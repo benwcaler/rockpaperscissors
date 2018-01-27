@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <p>Select R, P, or S to play. </p>
+    </div>
+    <div>
+        <p>User input:
+            <span id='userInput'></span>
+        </p>
+        <p>Computer input:
+            <span id='computerInput'></span>
+        </p>
+        <p>Wins:
+            <span id='wins'></span>
+        </p>
+        <p>Loses:
+            <span id='loses'></span>
+        </p>
+        <p>Ties:
+            <span id='ties'></span>
+        </p>
+    </div>
+    <script type='text/javascript'>
+        var userInput = document.getElementById('userInput');
+        var computerInput = document.getElementById('computerInput');
+        var wins = document.getElementById('wins');
+        var loses = document.getElementById('loses');
+        var ties = document.getElementById('ties');
+        var winCount = 0;
+        var loseCount = 0;
+        var tieCount = 0;
+
+        var options = ['r', 'p', 's']
+
+        document.onkeyup = function (event) {
+
+            var userChoice = event.key;
+            userInput.textContent = userChoice;
+
+            if (userChoice === 'r' || userChoice === 'p' || userChoice === 's') {
+                var randomNumber = Math.floor(Math.random() * 3);
+                var computerChoice = options[randomNumber]
+                computerInput.textContent = computerChoice;
+            }
+
+            if (userChoice === 'r' && computerChoice === 's') {
+                wins.textContent = ++winCount
+            } else if (userChoice === 'r' && computerChoice === 'p') {
+                loses.textContent = ++loseCount
+            } else if (userChoice === 'r' && computerChoice === 'r') {
+                ties.textContent = ++tieCount
+            } else if (userChoice === 's' && computerChoice === 's') {
+                ties.textContent = ++tieCount
+            } else if (userChoice === 's' && computerChoice === 'p') {
+                wins.textContent = ++winCount
+            } else if (userChoice === 's' && computerChoice === 'r') {
+                loses.textContent = ++loseCount
+            } else if (userChoice === 'p' && computerChoice === 's') {
+                loses.textContent = ++loseCount
+            } else if (userChoice === 'p' && computerChoice === 'p') {
+                ties.textContent = ++tieCount
+            } else if (userChoice === 'p' && computerChoice === 'r') {
+                wins.textContent = ++winCount
+            }
+        }
+    </script>
+</body>
+
+</html>
